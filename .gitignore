@@ -1,2 +1,6 @@
 public/bundle.js
 node_modules
+maxpatch/*.wav
+maxpatch/*.aif
+maxpatch/*.mp3
+
