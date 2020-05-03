@@ -27,8 +27,9 @@ trackRoute.get('/:_id', (req, res) => {
   } catch(err) {
     return res.status(400).json({ message: "Invalid trackID in URL parameter. Must be a single String of 12 bytes or a string of 24 hex characters" }); 
   }
-  // res.set('Content-Type', 'audio/aiff');
-  // res.set('Accept-Ranges', 'bytes');
+  res.set('Content-Type', 'audio/mp3');
+  // res.set('Content-Type', 'audio/x-aiff');
+  res.set('Accept-Ranges', 'bytes');
 
   let bucket = new mongodb.GridFSBucket(dbclient, {
     bucketName: 'fs'
@@ -47,6 +48,10 @@ trackRoute.get('/:_id', (req, res) => {
   downloadStream.on('end', () => {
     res.end();
   });
+});
+
+app.get("/", function(request, response) {
+  response.sendFile(__dirname + '/app/index.html');
 });
 
 app.listen(3005, () => {
