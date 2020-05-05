@@ -3,7 +3,7 @@ const mongodb = require("mongodb");
 const path = require('path');
 const fs = require('fs');
 
-const filePath = path.join(__dirname, 'hksoundscape.mp3');
+const filePath = path.join(__dirname, './maxpatch/hksoundscape.mp3');
 const dbName = 'soundfromMAX';
 
 const maxApi = require("max-api");
@@ -24,9 +24,10 @@ let maxfilename;
 maxApi.addHandler('input', (message) => {
     maxApi.post(`received from max ${message}`);
     maxfilename = message;
-
+	
     if(maxfilename != null){
       let filefromMax = path.join(__dirname, maxfilename);
+ 	  maxApi.post("in here");
           fs.createReadStream(filefromMax).
           //add data to upload filename
           pipe(bucket.openUploadStream(maxfilename)).

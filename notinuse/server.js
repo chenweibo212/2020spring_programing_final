@@ -12,7 +12,8 @@ const path = require('path');
 const fs = require('fs');
 const assert = require('assert');
 
-const filePath = path.join(__dirname, './testFile/hole.aiff');
+//const filePath = path.join(__dirname, './testFile/hole.aiff');
+const filePath = path.join(__dirname, './maxpatch/hksoundscape.mp3');
 const dbName = 'soundfromMAX';
 
 const maxApi = require("max-api");
@@ -62,7 +63,8 @@ maxApi.addHandler('input', (message) => {
     maxfilename = message;
 
     if(maxfilename != null){
-      let filefromMax = path.join(__dirname, './testFile/', maxfilename);
+      //let filefromMax = path.join(__dirname, './testFile/', maxfilename);
+      let filefromMax = path.join(__dirname, './maxpatch/', maxfilename);
           fs.createReadStream(filefromMax).
           //add data to upload filename
           pipe(bucket.openUploadStream(maxfilename)).
